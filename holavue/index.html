@@ -23,6 +23,7 @@
 
                         text:"Puerta Cerrada",
                         open:false,
+                        username:""
                         // styles:{
                         //     backgroundColor:"#eca1a6"
 
@@ -44,9 +45,8 @@
                 // }
                     
                 label(){
-                    return this.open ? "Cerrar":"Abrir"
+                    return this.open ? "Salir":"Acceder"
                 },
-
                 styles (){
                             return this.open ? ['open']:['closed'];
                 }
@@ -57,12 +57,12 @@
 
                     open(value){
                             if(value){
-                                this.text="Puerta Abierta"
+                                this.text="Cierra Sesion"
                                 // this.styles.backgroundColor = "#b5e7a0";
                             }  else {
-                                    this.text= "Puerta cerrada"
+                                    this.text= "Accede a tu Cuenta"
                                     // this.styles.backgroundColor = "#eca1a6";
-
+                                    this.username=" ";
                                 }
 
                     }
@@ -95,7 +95,19 @@
             template: ` 
                 <div class="container" :class="styles">
                         <h2>{{text}} </h2>
-                        <button @click = "open = !open"> {{ label}}</button>
+                        <div v-if="open">
+                                <p>Hola , {{ username}} </p>
+
+                         </div>
+                        <div v-else="!open">
+                            <label>Username</label>
+                            <input type="text" v-model = "username" />
+                        </div>
+
+                        <button @click = "open = !open"> 
+                            <div v-if="!open"> Acceder</div>                            
+                            <div v-else="open"> Salir</div>                            
+                        </button>
                 </div>       
             `
 
