@@ -10,11 +10,42 @@
     <script src="https://unpkg.com/vue@next"></script>    
     <div id = "app">   </div>
     <script>
-                        const app =Vue.createApp({
-                            template:``
-                        });
+const app =Vue.createApp({
+        template:
+        `
+                <div>
+                        <v-layout>
+                                       <template v-slot:header > 
+                                            <button>titulo</button>
+                                       </template> 
 
-                        
+                                       <template v-slot:content > 
+                                            bruno vicencio
+                                        </template> 
+
+                            </v-layout>
+ 
+                </div>
+        `
+
+});
+
+                        app.component("v-layout",{
+                                
+                            
+                            
+                            template:`
+                                <header>
+                                    <slot name="header"></slot>    
+                                </header>
+                                <div>
+                                            
+                                    <slot name="content"></slot>    
+                                        
+                                    
+                                </div>                   
+                                `
+                        });
                         const vm = app.mount("#app");
     </script>
 </body>
