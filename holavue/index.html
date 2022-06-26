@@ -11,8 +11,57 @@
     <div id = "app">   </div>
     <script>
                         const app =Vue.createApp({
-                            template:``
+
+                            data(){
+                                return{
+                                        text:"hola vue"
+                                 };
+
+
+                            },
+                            provide(){
+                                    // otroTexto:"haupei?"
+
+                                    return{
+                                            otroTexto:this.text
+                                        };
+                                            
+                            },
+                            template:`
+                            <div>{{text}}</div>
+                            <otro/>
+                            `
                         });
+
+                        app.component("otro",{
+                            template:`
+                            <tercer />
+
+                            `
+
+
+
+                        });
+
+                        
+
+
+                        app.component("tercer",{
+                            inject:["otroTexto"],
+                            template:`
+                                <div>{{otroTexto}} </div>
+                            `
+
+
+
+                        });
+
+                        
+
+
+
+
+
 
                         
                         const vm = app.mount("#app");
