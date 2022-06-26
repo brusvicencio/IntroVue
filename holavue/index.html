@@ -11,11 +11,35 @@
     <div id = "app">   </div>
     <script>
                         const app =Vue.createApp({
-                            template:``
+            
+                            data(){
+
+                                return {
+                                    text:"hola brus"
+                                }
+                            },
+            
+            
+                            template:`
+                                <v-button ref="elemento"  :label="text"></v-button>
+
+                            `
+                        });
+
+                        app.component("v-button",{
+
+                            props:["label"],
+                            template:`
+
+                            <button>{{ label}}</button>
+
+                            `
                         });
 
                         
                         const vm = app.mount("#app");
+
+                        console.log(vm.$props);
     </script>
 </body>
 </html>
